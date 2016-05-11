@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>Examples</title>
+<link href="../css/bootstrap.min.css" rel="stylesheet" >
+<style>
+    .totalContainer {
+        margin: 0 auto;
+        text-align: center;
+    }
+    .classes-input {
+        display: inline-block;
+        vertical-align: middle;
+    }
+
+    .classes-input div {
+        background-color: #FFFFFF;
+        border: 1px solid #ccc;
+    }
+
+    .my-input {
+        height: 30px;
+        padding: 0;
+        border: none;
+        box-shadow: none;
+    }
+</style>
+</head>
+<body>
+<script type="text/javascript" src="../js/jquery-1.9.1.min.js"></script>
+<div class="totalContainer">
+            <div class="classes-input">
+                <div class="input-group">
+                    <input type="text" class="form-control my-input" oninput="addClasses()" style="width: 70px">
+                </div>
+            </div>
+ </div>
+ <script>
+     /**
+      * 添加编号(如果输入空格则生成编号)
+      */
+    function addClasses() {
+        var inputDiv = $(".classes-input input");
+        var inputVal = inputDiv.val();
+        //除最后一个值
+        var preInput = inputVal.substring(0,inputVal.length-1)
+        //最后一个值转数字
+        var lastInput = inputVal.charCodeAt(inputVal.length-1);
+        console.log(lastInput);
+        if(lastInput<"48"||lastInput>"57"){
+            var v = inputVal.replace(String.fromCharCode(lastInput),"");
+            inputDiv.val(v);
+        }
+        //空格转ASCII码
+        if (lastInput == "32") {
+            inputDiv.before("<div class='enable-classes'><span>"+preInput+"</span><span class='glyphicon glyphicon-remove'></span></div>");
+            inputDiv.val("")
+            //删除班级编号
+            $(".enable-classes").on("click",function () {
+                $(this).remove();
+            })
+        }
+    }
+</script>
+</body>
+</html>
