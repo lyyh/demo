@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <h1>两列布局</h1>
+    <div>
+        <div style="width: 100px;height: 100px;float: left;background-color: greenyellow"></div>
+        <!--BFC模型,自适应-->
+        <div style="height: 100px;overflow: hidden;background-color: yellow"></div>
+    </div>
+    <h1>三列布局</h1>
+    <h2>第一种方式</h2>
+    <div style="width: 200px;height: 100px;float: left;background-color: greenyellow">LEFT</div>
+    <div style="width: 200px;height: 100px;float: right;background-color: grey">LEFT</div>
+    <div style="height: 100px;background-color: yellow;">MAIN</div>
+    <hr>
+    <h2>第二种方式</h2>
+    <div style="position: relative">
+    <div style="float:left;width: 100%">
+        <div style="margin:0 100px;background-color: greenyellow;height: 100px;text-align: center">MAIN</div>
+    </div>
+    <div style="position: absolute;left: 0;height: 100px;width: 200px;background-color: grey">LEFT</div>
+    <div style="position: absolute;right: 0;height: 100px;width: 200px;background-color: yellow">RIGHT</div>
+    </div>
+</body>
+</html>
