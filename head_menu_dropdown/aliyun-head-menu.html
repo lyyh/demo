@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Title</title>
+    <style>
+        body{
+            margin: 0;
+        }
+        a{
+            text-decoration: none;
+            color: #000000;
+            padding: 20px;
+        }
+        ul{
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+        li{
+            position: relative;
+            float: left;
+            text-align: center;
+        }
+        .warp{
+            padding: 0;
+            margin: 0;
+            font-size: 20px;
+        }
+        .head{
+            height: 80px;
+            line-height: 80px;
+            cursor: pointer;
+        }
+        .head:hover{
+            background-color: #00a2ca;
+            transition: background-color 0.5s;
+        }
+        .head:hover a{
+            color: #fff;
+            cursor: default;
+        }
+        .container{
+            position: relative;
+            height: 100%;
+            max-width: 1200px;
+            min-width: 1000px;
+            margin: 0 auto;
+        }
+        .production{
+            position: absolute;
+            top: 80px;
+            width: 800px;
+            height: 100px;
+            visibility: hidden;
+        }
+        /*.production:before{*/
+            /*overflow: hidden;*/
+        /*}*/
+        /*.production:after{*/
+            /*clear: both;*/
+        /*}*/
+        .head-drop:hover .production{
+            display: inline-block;
+            visibility: visible;
+            background-color: #ccc;
+        }
+    </style>
+</head>
+<body>
+<div class="warp">
+    <div class="head">
+        <div class="container">
+            <ul>
+                <li class="head-drop"><a href="#">产品</a>
+                <div class="production"></div>
+                </li>
+                <li><a href="#">解决方案</a></li>
+                <li><a href="#">软件市场</a></li>
+                <li><a href="#">开发者社区</a></li>
+                <li><a href="#">服务培训</a></li>
+                <li><a href="#">合作与生态</a></li>
+                <li><a href="#">大数据</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+</body>
+</html>
