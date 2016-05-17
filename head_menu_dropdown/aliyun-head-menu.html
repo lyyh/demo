@@ -3,68 +3,143 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Title</title>
+    <script type="text/javascript" src="../jquery/jquery-1.9.1.min.js"></script>
+    <title>阿里云head-drop</title>
+    <script>
+        $(document).ready(function () {
+            //显示菜单下拉框
+            $(".head-drop, .menu-drop").mouseover(function () {
+                if ($(".menu-drop").css("height") == "0px") {
+                    $(".menu-drop").css("position", "absolute").css("background-color", "#FFF").css("z-index", "20");
+                    $(".menu-drop").animate({height: "319px"}, 100);
+                }
+            })
+            //隐藏菜单下拉框
+            $(".head-drop").mouseleave(function () {
+                $(".menu-drop").css("position", "absolute").css("height", "0").css("z-index", "1");
+            })
+            //下拉框链接
+            $(".pro-menu li").mouseover(function () {
+                var index = $(".pro-menu li").index(this);
+                $(this).find("a").css("color","#00a2ca");
+                $(this).siblings().find("a").css("color","#fff");
+                $(".content div:eq(" + index + ")").show();
+                $(".content div:eq(" + index + ")").siblings().hide();
+            })
+        })
+    </script>
     <style>
-        body{
+        body {
             margin: 0;
         }
-        a{
-            text-decoration: none;
-            color: #000000;
-            padding: 20px;
-        }
-        ul{
+
+        ul {
             list-style: none;
             margin: 0;
             padding: 0;
         }
-        li{
+
+        a {
+            text-decoration: none;
+        }
+
+        .nav > li > a {
+            display: block;
+            color: #000000;
+            padding: 0 20px;
+        }
+
+        .nav > li {
             position: relative;
             float: left;
             text-align: center;
         }
-        .warp{
+
+        .warp {
             padding: 0;
             margin: 0;
             font-size: 20px;
         }
-        .head{
+
+        .head {
             height: 80px;
             line-height: 80px;
             cursor: pointer;
         }
-        .head:hover{
+
+        .head:hover {
             background-color: #00a2ca;
             transition: background-color 0.5s;
         }
-        .head:hover a{
+
+        .head:hover a {
             color: #fff;
             cursor: default;
         }
-        .container{
+
+        .container {
             position: relative;
             height: 100%;
             max-width: 1200px;
             min-width: 1000px;
             margin: 0 auto;
         }
-        .production{
+
+        /*采用绝对定位的堆叠顺序*/
+        .menu-drop {
             position: absolute;
+            left: 0;
             top: 80px;
-            width: 800px;
-            height: 100px;
-            visibility: hidden;
+            width: 1000px;
+            z-index: 1;
+            height: 0;
         }
-        /*.production:before{*/
-            /*overflow: hidden;*/
-        /*}*/
-        /*.production:after{*/
-            /*clear: both;*/
-        /*}*/
-        .head-drop:hover .production{
-            display: inline-block;
-            visibility: visible;
-            background-color: #ccc;
+        .pro-menu {
+            height: 100%;
+            width: 200px;
+            line-height: 40px;
+            font-size: 14px;
+            float: left;
+            background-color: #dddddd;
+        }
+
+        .pro-menu a {
+            position: relative;
+            display: block;
+        }
+
+        .pro-menu a:before {
+            content: ".";
+            display: block;
+            height: 0;
+            overflow: hidden;
+        }
+
+        .pro-menu a:after {
+            content: ".";
+            display: block;
+            height: 0;
+            overflow: hidden;
+            clear: both;
+        }
+
+        .pro-menu a span {
+            position: absolute;
+            right: 0;
+            top: 5%;
+        }
+
+        .pro-menu ul {
+            height: 100%;
+        }
+        .menu-drop-content {
+            padding: 10px 0 0 10px;
+            overflow: hidden;
+            height: 97%;
+        }
+        .content {
+            background-color: #6ce26c;
+            height: 100%;
         }
     </style>
 </head>
@@ -72,9 +147,34 @@
 <div class="warp">
     <div class="head">
         <div class="container">
-            <ul>
+            <ul class="nav">
                 <li class="head-drop"><a href="#">产品</a>
-                <div class="production"></div>
+                    <div class="menu-drop">
+                        <div class="pro-menu">
+                            <ul>
+                                <li><a href="">弹性计算<span>></span></a></li>
+                                <li><a href="">数据库<span>></span></a></li>
+                                <li><a href="">存储与CDN<span>></span></a></li>
+                                <li><a href="">网络<span>></span></a></li>
+                                <li><a href="">云盾<span>></span></a></li>
+                                <li><a href="">大规模计算<span>></span></a></li>
+                                <li><a href="">管理与监控<span>></span></a></li>
+                                <li><a href="">移动服务<span>></span></a></li>
+                            </ul>
+                        </div>
+                        <div class="menu-drop-content">
+                            <div class="content">
+                                <div style="display: block;">弹性计算</div>
+                                <div style="display: none">数据库</div>
+                                <div style="display: none;">存储与CDN</div>
+                                <div style="display: none">网络</div>
+                                <div style="display: none">云盾</div>
+                                <div style="display: none">大规模计算</div>
+                                <div style="display: none">管理与监控</div>
+                                <div style="display: none">移动服务</div>
+                            </div>
+                        </div>
+                    </div>
                 </li>
                 <li><a href="#">解决方案</a></li>
                 <li><a href="#">软件市场</a></li>
@@ -85,6 +185,7 @@
             </ul>
         </div>
     </div>
+    <div style="width:100%;height: 500px;position: absolute;z-index: 10;background-color: #FFFFFF"></div>
 </div>
 </body>
 </html>
