@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<title>自定义模态框</title>
+	<style type="text/css">
+	.container{
+		position: relative;
+		height: 100%;
+		margin: 0 auto;
+		background-color: rgb(252, 255, 58);
+	}
+	.btn{
+		position: absolute;
+		top: 0;
+		bottom: 0;
+		left: 0;
+		right: 0;
+		margin: auto;
+		border-radius: 10px;
+		background-color: #86CBF9;
+		width: 200px;
+		height: 50px;
+		text-align: center;
+		line-height: 50px;
+		cursor: pointer;
+	}
+	.btn:hover{
+		color: #fff;
+		background-color: #3994D1;
+	}
+	.modal-fade{
+		position: relative;
+		height: 500px;
+		visibility: hidden;
+	}
+	.modal-dialog{
+		position: fixed;
+		width: 500px;
+		height: 300px;
+		top: 100px;
+		left:0;
+		right: 0;
+		margin: 0 auto;
+		z-index: 100;
+	}
+	.modal-content{
+		box-shadow: 0 0 10px #333;
+		border-radius:20px;
+		background-color: #fff;
+		height: 100%;
+	}
+	.modal-header{
+		/*height: 50px;*/
+		border-bottom: 1px solid #ccc;
+		padding: 15px;
+		/*line-height: 50px;*/
+	}
+	.modal-header h4{
+		margin: 0;
+	}
+	.close-btn{
+		float: right;
+		border:0;
+		background-color: transparent;
+		color: #ddd;
+		cursor: pointer;
+	}
+	.close-btn:hover{
+		color:#ccc;
+	}
+	.modal-body{
+		height: 200px;
+	}
+	.modal-footer{
+		border-top:1px solid #ccc;
+	}
+	.confirm,.cancel{
+		margin: 10px 10px 0 0;
+		float: right;
+		padding: 10px 20px;
+		border:1px solid #ccc;
+		text-align: center;
+		border-radius: 5px;
+		cursor: pointer;
+	}
+	.confirm{
+		color: #fff;
+		background-color: #337ab7;
+	}
+	.confirm:hover{
+		background-color: #316088;
+		transition: all .4s
+	}
+	.cancel:hover{
+		background-color: #ddd;
+		transition: all .4s;
+	}
+</style>
+	<script type="text/javascript">
+	window.onload = function() {
+		var modalStatus = document.querySelector(".modal-fade");
+		document.querySelector(".btn").addEventListener("click", function() {
+			modalStatus.style.visibility = (modalStatus.style.visibility == "visible") ? "hidden" : "visible";
+			var opa = 0;
+			showModal(opa);
+		});
+		document.querySelector(".close-btn").addEventListener("click", function() {
+			var opa = 1;
+			closeModal(opa);
+		});
+		//渐变显示模态框
+		function showModal(opa) {
+			if (modalStatus.style.opacity == 1) {
+				clearTimeout(time)
+				return;
+			}
+			opa += 0.2;
+			modalStatus.style.opacity = opa;
+			var time = setTimeout(function() {
+				showModal(opa);
+			}, 100);
+		}
+		//渐变隐藏模态框
+		function closeModal(opa) {
+			if (modalStatus.style.opacity == 0) {
+				clearTimeout(time)
+				modalStatus.style.visibility = (modalStatus.style.visibility == "visible") ? "hidden" : "visible";
+				return;
+			}
+			opa -= 0.2;
+			modalStatus.style.opacity = opa;
+			var time = setTimeout(function() {
+				closeModal(opa);
+			}, 100);
+		}
+	}
+</script>
+</head>
+<body>
+	<div class="container">
+		<a class="btn">点我弹出模态框</a>
+		<div class="modal-fade">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<a class="close-btn">
+							<span>X</span>
+						</a>
+						<h4>模态框标题</h4>
+					</div>
+					<div class="modal-body"></div>
+					<div class="modal-footer">
+						<a class="confirm">
+							<span>确定</span>
+						</a>
+						<a class="cancel">
+							<span>取消</span>
+						</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
