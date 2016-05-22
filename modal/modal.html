@@ -101,11 +101,13 @@
 	<script type="text/javascript">
 	window.onload = function() {
 		var modalStatus = document.querySelector(".modal-fade");
+		//点击打开模态框
 		document.querySelector(".btn").addEventListener("click", function() {
 			modalStatus.style.visibility = (modalStatus.style.visibility == "visible") ? "hidden" : "visible";
 			var opa = 0;
 			showModal(opa);
 		});
+		//点击关闭模态框
 		document.querySelector(".close-btn").addEventListener("click", function() {
 			var opa = 1;
 			closeModal(opa);
@@ -125,7 +127,7 @@
 		//渐变隐藏模态框
 		function closeModal(opa) {
 			if (modalStatus.style.opacity == 0) {
-				clearTimeout(time)
+				clearTimeout(time);
 				modalStatus.style.visibility = (modalStatus.style.visibility == "visible") ? "hidden" : "visible";
 				return;
 			}
